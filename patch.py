@@ -87,8 +87,17 @@ def extractor_address(text: str) -> List[Any]:
     return [match for match in AddressExtractor()(text)]
 
 
+def extractor_address_str(text: str) -> List[str]:
+    return [text.__getitem__(slice(*match.span)) for match in AddressExtractor()(text)]
+
+
 def extractor_date(text: str) -> List[Any]:
     return [match for match in DatesExtractor()(text)]
+
+
+def extractor_date_str(text: str) -> List[str]:
+    return [text.__getitem__(slice(*match.span)) for match in DatesExtractor()(text)]
+
 
 # Примеры
 # extractor_address('пошли к метро Щукинская')
